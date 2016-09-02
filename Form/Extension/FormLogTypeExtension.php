@@ -5,6 +5,7 @@ namespace Oh\FormErrorLogBundle\Form\Extension;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 class FormLogTypeExtension extends AbstractTypeExtension
 {
@@ -23,6 +24,6 @@ class FormLogTypeExtension extends AbstractTypeExtension
 
     public function getExtendedType()
     {
-        return 'form';
+        return FormType::class;
     }
 }
