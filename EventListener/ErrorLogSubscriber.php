@@ -104,6 +104,7 @@ class ErrorLogSubscriber implements EventSubscriberInterface
                     $data = '';
                 }
             }
+            $data = preg_replace("/password\":\"[^\"]+\"/i", "password\":\"hidden_password\"", $data);
             $errors[$key] = array('messages'=>$error->getMessage(), 'value'=>$data);
         }
         if ($form->count() > 0) {
@@ -113,7 +114,11 @@ class ErrorLogSubscriber implements EventSubscriberInterface
                     $messages = $values = array();
                     foreach($childErrors as $childError) {
                         $messages[] = $childError['messages'];
-                        $values[] = $childError['value'];
+                        $value = $childError['value'];
+                        if (preg_match("/password/i", $child->getName())) {
+                            $value = "hidden_password";
+                        }
+                        $values[] = $value;
                     }
 
                     // if there's more than 1 error or value on a field then we can log them all
