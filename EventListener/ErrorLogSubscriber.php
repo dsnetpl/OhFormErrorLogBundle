@@ -103,6 +103,9 @@ class ErrorLogSubscriber implements EventSubscriberInterface
                 else {
                     $data = '';
                 }
+            } else if (is_array($data)) {
+                //when form has extra fields
+                $data = '';
             }
             $data = preg_replace("/password\":\"[^\"]+\"/i", "password\":\"hidden_password\"", $data);
             $errors[$key] = array('messages'=>$error->getMessage(), 'value'=>$data);
