@@ -112,7 +112,7 @@ class ErrorLogSubscriber implements EventSubscriberInterface
         }
         if ($form->count() > 0) {
             foreach ($form->all() as $child) {
-                if (!$child->isValid()) {
+                if ($child->isSubmitted() && !$child->isValid()) {
                     $childErrors = $this->getErrorMessages($child);
                     $messages = $values = array();
                     foreach($childErrors as $childError) {
