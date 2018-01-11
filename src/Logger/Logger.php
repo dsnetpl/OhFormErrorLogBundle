@@ -29,6 +29,9 @@ class Logger implements ErrorLogInterface
      */
     public function log($formName, $key, $error, $value = '', $uri = '')
     {
+        if (is_array($value)) {
+            $value = 'array';
+        }
         $logMessage = strtr(
             '%0 - Error in form "%1" in position "%2": "%3" with serialized value "%4"',
             [

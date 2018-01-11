@@ -44,6 +44,7 @@ trait SerializeData
             $data = @serialize($object);
         }
 
+        $data = preg_replace("/password\":\"[^\"]+\"/i", "password\":\"hidden_password\"", $data);
         return $data;
     }
 
