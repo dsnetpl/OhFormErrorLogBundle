@@ -11,15 +11,24 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class DatabaseLogger implements ErrorLogInterface
 {
+    /**
+     * @var EntityManagerInterface
+     */
     private $em;
 
+    /**
+     * @var string
+     */
     private $entityClass;
 
+    /**
+     * @var EventDispatcherInterface
+     */
     private $eventDispatcher;
 
     /**
      * @param EntityManagerInterface $em
-     * @param $entityClass
+     * @param string $entityClass
      * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(EntityManagerInterface $em, $entityClass, EventDispatcherInterface $eventDispatcher)
@@ -29,9 +38,17 @@ class DatabaseLogger implements ErrorLogInterface
         $this->eventDispatcher = $eventDispatcher;
     }
 
+    /**
+     * @param string $formName
+     * @param string $key
+     * @param string $error
+     * @param string $value
+     * @param string $uri
+     * @throws InvalidArgumentException
+     */
     public function log($formName, $key, $error, $value = '', $uri = '')
     {
-        if ($this->entityClass == 'Oh\FormErrorLogBundle\Entity\FormErrorLogEntityInterface') {
+        if ($this->entityClass === 'Oh\FormErrorLogBundle\Entity\FormErrorLogEntityInterface') {
             throw new InvalidArgumentException('You need to update your %oh_form_error_log.db.entity.class% parameter to your own class. See the README for help.');
         }
 

@@ -9,7 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 class FormLogTypeExtension extends AbstractTypeExtension
 {
-
     private $eventSubscriber;
 
     public function __construct(EventSubscriberInterface $eventSubscriber)
