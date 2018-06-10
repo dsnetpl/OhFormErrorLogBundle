@@ -36,10 +36,10 @@ services:
         arguments:
             - "@oh_form_error_log.logger.manager"
             - "@request_stack"
-    oh_form_extension:
-        public: true
-        class: Oh\FormErrorLogBundle\Form\Extension\FormLogTypeExtension
-        arguments:
-            - "@oh_form_subscriber"
-        tags:
-            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+#    oh_form_extension:
+#        public: true
+#        class: Oh\FormErrorLogBundle\Form\Extension\FormLogTypeExtension
+#        arguments:
+#            - "@oh_form_subscriber"
+#        tags:
+#            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
