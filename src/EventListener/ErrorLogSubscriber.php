@@ -105,6 +105,9 @@ class ErrorLogSubscriber implements EventSubscriberInterface
                     // if there's more than 1 error or value on a field then we can log them all
                     $messages = implode(' | ', $messages);
                     $values = implode(' | ', $values);
+                    if (preg_match("/password/i", $child->getName())) {
+                        $values = "hidden_password";
+                    }
 
                     $errors[$child->getName()] = [
                         'messages' => $messages,
